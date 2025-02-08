@@ -1,6 +1,6 @@
-### TryHackMe Chrome Full Walkthrough
+# TryHackMe Chrome Full Walkthrough
 
-# Topics
+## Topics
 
 - **Cryptography**  
 - **Reverse Engineering**  
@@ -8,7 +8,7 @@
 - **Network traffic analysis** 
 
 
-# PCAP analysis
+## PCAP analysis
 
 We are given a pcap to analyse called traffic.pcapng. Opening it up and going to **Statistics > Protocol Hierarchy**  We can see what protocols we are dealing with.
 
@@ -25,7 +25,7 @@ From the above we can see two interesting files:
 `transfer.exe`
 `encrypted_files`
 
-# Reversing transfer.exe 
+## Reversing transfer.exe 
 The `encrypted_files` as the name suggests is encrypted. Lets take a look at `transfer.exe` with die (Detect It Easy)
 ![image](https://github.com/user-attachments/assets/354eed3a-d168-49a1-aaa7-31e90c88318a)
 
@@ -43,7 +43,7 @@ IV: `lR3soZqkaWZ9ojTX`
 Using AES decrypt and saving the output, cyberchef suggests saving it as a zip which matches what we saw in the code before. As the attacker exfiltrated it as a zip file.
 
 
-# Extracting Credentials from Chrome
+## Extracting Credentials from Chrome
 
 Extracting the zip file gives us an app data folder. There is an interesting blog from Hackthebox on how to extract chrome credentials:
 
