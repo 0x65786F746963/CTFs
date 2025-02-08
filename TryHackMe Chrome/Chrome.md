@@ -167,4 +167,5 @@ if __name__ == '__main__':
 
  By doing this alone we get 2 of ur answers as well. Now we can decrypt and get our passwords as shown below:
 
- 
+ ![Screenshot 2025-02-08 185113](https://github.com/user-attachments/assets/9026cf3e-6157-4af8-a4dc-841d15ec8e8e)
+
