@@ -1,4 +1,4 @@
-## TryHackMe Chrome Full Walkthrough
+### TryHackMe Chrome Full Walkthrough
 
 # Topics
 
