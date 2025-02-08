@@ -161,11 +161,11 @@ if __name__ == '__main__':
         cursor.close()
         conn.close()
 ```
- Note I had to modify mine to use "from Crypto.Cipher import AES" instead as I had issues with Cryptodome. Before we run the script we also need to change action_url to origin_url. The reason for this is that if we take 'Login State' and view it in an online SQLite Viewer we can see that it uses origin_url as the column
+ Note I had to modify mine to use "from Crypto.Cipher import AES" instead as I had issues with Cryptodome. Before we run the script we also need to change action_url to origin_url in the script. The reason for this is that if we take 'Login State' and view it in an online SQLite Viewer we can see that it uses origin_url as the column
 
  ![image](https://github.com/user-attachments/assets/cbf98007-90c4-4bb6-a3f0-d7a4e50bbd28)
 
- By doing this alone we get 2 of ur answers as well. Now we can decrypt and get our passwords as shown below:
+ By viewing just Local state alone in SQlite online we get 2 of ur answers as well. Now we can run the script, decrypt and get our passwords as shown below:
 
  ![Screenshot 2025-02-08 185113](https://github.com/user-attachments/assets/9026cf3e-6157-4af8-a4dc-841d15ec8e8e)
 
