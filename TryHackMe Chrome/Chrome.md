@@ -68,7 +68,7 @@ john --wordlist=/usr/share/wordlists/rockyou.txt mkhash
 ```
 This should now give us the password [REDACTED].
 
-Next we need to decode the DPAPI blog before decrypting. We can run the python script provided in the blob and it should give us a file called dec_data.
+Next we need to decode the DPAPI blob before decrypting. We can run the python script provided in the blog and it should give us a file called dec_data.
 
 ```python
 import json
