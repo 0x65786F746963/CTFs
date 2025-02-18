@@ -7,8 +7,3 @@ Port of interest is 1337:
 
 We can see its running Apache. So we run a Nikto scan to which an interesting directory called logs:
 
-
-
-
-
-
