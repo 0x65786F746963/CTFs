@@ -137,7 +137,7 @@ Now we can login and obtain our flag:
 
 ![image](https://github.com/user-attachments/assets/d27caa47-a299-45c0-ab43-a29083412be2)
 
-Note you may need to run the following command a few times if it does not work.
+Note you may need to run the following command a few times if it does not work. Note these are just Arbitrary values
 
 ```sh
 curl -X POST -d 'username=admin&password=admin&captcha=405' http://10.10.131.181/login
