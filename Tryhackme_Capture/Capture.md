@@ -2,8 +2,8 @@
 
 ## Topics
 
-- **authentication bypass**  
-- **captcha bypass**
+- **Authentication bypass**  
+- **Captcha bypass**
 - **Scripting**
 
 ## Login page enumeration
