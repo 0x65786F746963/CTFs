@@ -29,7 +29,7 @@ From the above we can see two interesting files:
 The `encrypted_files` as the name suggests is encrypted. Lets take a look at `transfer.exe` with die (Detect It Easy)
 ![image](https://github.com/user-attachments/assets/354eed3a-d168-49a1-aaa7-31e90c88318a)
 
-We can see that this is a .NET executable, which should mean it we can decompile it to get the original code using dnspy.
+We can see that this is a .NET executable, which should mean we can decompile it to get the original code using dnspy.
 
 ![image](https://github.com/user-attachments/assets/74f5d464-d3b0-4312-a4b7-bab8234228e9)
 
